@@ -154,7 +154,7 @@ Workflow type : `/start` → `/brainstorm`? → `/architect` (PRD + providers + 
 
 ## Skills n8n
 
-7 skills officiels de [czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills) (MIT) dans `.claude/skills/n8n/` : `n8n-mcp-tools-expert`, `n8n-workflow-patterns`, `n8n-validation-expert`, `n8n-node-configuration`, `n8n-expression-syntax`, `n8n-code-javascript`, `n8n-code-python`. Auto-invoqués quand tu touches à n8n.
+14 skills officiels de [czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills) (MIT) plus un skill routeur, installés dans ton projet par `.claude/rules/n8n-setup.md` (plugin Claude Code recommandé) : outils du MCP, patterns de workflow, validation, configuration des nodes, expressions, code JavaScript et Python, gestion d'erreurs, données binaires, sous-workflows, agents IA, multi-instance, auto-hébergement. Auto-invoqués quand tu touches à n8n.
 
 ## Règles path-scoped
 

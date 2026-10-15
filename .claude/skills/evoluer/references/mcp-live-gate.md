@@ -54,7 +54,7 @@ C'est la version Étape 4bis du principe Karpathy "le test EST la métrique". Po
 1. Imprime le message d'erreur exact à l'utilisateur.
 2. Diagnostique :
    - **401/403** → clé invalide
-   - **404** → URL malformée (oublié `/api/v1` ?)
+   - **404** → URL malformée (le plus souvent : `/api/v1` ajouté en trop, l'URL doit être nue)
    - **`command not found`** côté MCP → Claude Code pas redémarré après edit `.mcp.json`
    - **Tool absent** → MCP pas dans `.mcp.json` (ou `.mcp.json` mal parsé)
 3. Propose la correction concrète, attends que l'utilisateur la fasse + relance Claude Code si nécessaire.

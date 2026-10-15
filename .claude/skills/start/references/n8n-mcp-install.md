@@ -109,15 +109,18 @@ Demande à l'utilisateur les 2 valeurs (l'utilisateur les récupère dans Settin
         "MCP_MODE": "stdio",
         "LOG_LEVEL": "error",
         "DISABLE_CONSOLE_OUTPUT": "true",
-        "N8N_API_URL": "<URL réelle, ex: https://n8n.tondomaine.com/api/v1>",
-        "N8N_API_KEY": "<JWT réel>"
+        "N8N_API_URL": "<URL réelle et NUE, ex: https://n8n.tondomaine.com>",
+        "N8N_API_KEY": "<JWT réel>",
+        "DISABLED_TOOLS": "n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable"
       }
     }
   }
 }
 ```
 
-⚠️ **N'inclus jamais `/api` sans le `/v1`** : sans `/api/v1`, tous les appels MCP renvoient 404. Format correct : `https://n8n.exemple.com/api/v1` ou `https://{workspace}.app.n8n.cloud/api/v1`.
+🔴 **N'ajoute PAS `/api/v1`** : le serveur construit le chemin lui-même. Format correct : `https://n8n.exemple.com` ou `https://{workspace}.app.n8n.cloud`. *(Corrigé le 2026-09-14 : cette ligne affirmait l'inverse. Vérifié en direct — `n8n_health_check` répond `ok` sur l'URL nue, et c'est aussi ce que documente le README upstream.)*
+
+**Instance locale** (`http://localhost:5678`) : ajoute `"WEBHOOK_SECURITY_MODE": "moderate"` dans `env`, sinon n8n-mcp refuse l'adresse (garde anti-SSRF, mode `strict` par défaut).
 
 **Préserve les autres entrées MCP éventuellement déjà présentes** — fusion, pas remplacement.
 
@@ -133,7 +136,7 @@ cp .mcp.json .mcp.json.example
 # Puis git add .mcp.json.example .gitignore
 ```
 
-**Pin de version** : `n8n-mcp@latest` te donne le dernier release. Pour la reproductibilité, l'utilisateur peut remplacer par `n8n-mcp@2.51.3` (ou la version observée via `npm view n8n-mcp version`). Mentionne-le mais ne le force pas.
+**Pin de version** : `n8n-mcp@latest` te donne le dernier release. Pour la reproductibilité, l'utilisateur peut remplacer par `n8n-mcp@2.93.0` (ou la version observée via `npm view n8n-mcp version`). Mentionne-le mais ne le force pas.
 
 ## Étape 5b.5 — Déclencher la procédure complète n8n-setup.md
 

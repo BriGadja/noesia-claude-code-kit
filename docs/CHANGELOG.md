@@ -3,6 +3,29 @@
 > Toutes les versions notables du kit Noésia Claude Code.
 > Format inspiré de [Keep a Changelog](https://keepachangelog.com/). Versions [SemVer](https://semver.org/lang/fr/).
 
+## v2.8.5 — 2026-10-15
+
+### Corrigé
+
+- **`N8N_API_URL` = URL nue, sans `/api/v1`.** Le kit recommandait d'ajouter `/api/v1` (rule `n8n-setup`, `/start`, `docs/KIT.md`, diagnostic 404 de `/evoluer`) : c'était faux, n8n-mcp construit le chemin lui-même et l'URL ainsi complétée renvoie des 404. Vérifié en direct le 2026-09-14 (`n8n_health_check` répond `ok` sur l'URL nue) et contre la doc upstream le 2026-10-15.
+- **Skills n8n : 14, plus un routeur, installés par la rule `n8n-setup`.** Le README, `docs/KIT.md`, `/start` et la rule `n8n` annonçaient 7 skills livrés dans `.claude/skills/n8n/`, dossier que le kit ne contient pas. Noms à jour (`n8n-binary-and-data`, `n8n-subworkflows`, `n8n-agents`).
+- **Version de n8n-mcp citée** : `2.93.x` au lieu de `2.51.x`.
+
+### Modifié
+
+- **Défaut d'install n8n-mcp : API-connected moins trois outils** (`DISABLED_TOOLS=n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable`). Suppression de workflow définitive, accès client exposés, tables vidables sans signal : les outils n'existent plus dans la session. Les 25 outils restants couvrent tout `/execute`.
+- **Instance n8n locale** : `WEBHOOK_SECURITY_MODE=moderate` à ajouter, sinon n8n-mcp refuse `localhost` (garde anti-SSRF, documentée upstream).
+
+### Ajouté
+
+- **`validate-kit.sh` Check 11** : aucune URL d'exemple terminée par `/api/v1` (hors CHANGELOG).
+
+### Non-breaking
+
+Aucune signature de skill modifiée. Un `.mcp.json` existant avec `/api/v1` reste à corriger à la main : retirer `/api/v1` de `N8N_API_URL`, puis relancer Claude Code.
+
+---
+
 ## v2.8.4 — 2026-10-15
 
 ### Modifié
