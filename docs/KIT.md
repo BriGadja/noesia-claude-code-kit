@@ -33,9 +33,9 @@
 - **`/debug`** (built-in Claude Code natif) — pour debugger un bug. **Règle de comportement** : écris d'abord un test de régression qui reproduit le bug, puis fais-le passer (TDD).
 - **`/start` Phase 4** — propose le niveau Request Classification (LITE / STANDARD / FULL). Stocké dans `CLAUDE.md ## Request Classification`.
 
-### Skills `n8n-*` — 7 skills tiers
+### Skills `n8n-*` — 14 skills tiers
 
-7 skills officiels [czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills) (MIT) dans `.claude/skills/n8n/` :
+14 skills officiels [czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills) (MIT) plus un skill routeur, installés dans ton projet par [`.claude/rules/n8n-setup.md`](../.claude/rules/n8n-setup.md) § 2 (plugin Claude Code recommandé). Les 7 historiques :
 - `n8n-mcp-tools-expert`
 - `n8n-workflow-patterns`
 - `n8n-validation-expert`
@@ -44,7 +44,7 @@
 - `n8n-code-javascript`
 - `n8n-code-python`
 
-Auto-invoqués quand tu touches à n8n. Attribution dans `.claude/skills/n8n/LICENSE-czlonkowski`.
+Plus `n8n-code-tool`, `n8n-error-handling`, `n8n-binary-and-data`, `n8n-subworkflows`, `n8n-agents`, `n8n-multi-instance`, `n8n-self-hosting`. Auto-invoqués quand tu touches à n8n. Attribution : licence MIT de czlonkowski (copiée dans `.claude/skills/n8n/LICENSE-czlonkowski` en cas d'install par clone manuel).
 
 ---
 
@@ -248,8 +248,9 @@ claude mcp add n8n-mcp \
   -e MCP_MODE=stdio \
   -e LOG_LEVEL=error \
   -e DISABLE_CONSOLE_OUTPUT=true \
-  -e 'N8N_API_URL=<URL réelle, ex: https://n8n.tondomaine.com/api/v1>' \
+  -e 'N8N_API_URL=<URL réelle et nue, ex: https://n8n.tondomaine.com>' \
   -e 'N8N_API_KEY=<JWT réel>' \
+  -e 'DISABLED_TOOLS=n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable' \
   -- npx -y n8n-mcp@latest
 
 # Plugin frontend-design
@@ -258,7 +259,7 @@ claude plugin install frontend-design@claude-code-plugins
 
 Puis : `claude mcp list` et `claude plugin list` pour vérifier.
 
-> **Pin de version recommandé** — `n8n-mcp@latest` te donne le dernier release (czlonkowski ship souvent : `2.51.x` actuellement). Pour la reproductibilité, pinne une version explicite dans `.mcp.json` (ex : `n8n-mcp@2.51.3`) et bump volontairement après avoir lu le CHANGELOG.
+> **Pin de version recommandé** — `n8n-mcp@latest` te donne le dernier release (czlonkowski ship souvent : `2.93.x` au 2026-10-15). Pour la reproductibilité, pinne une version explicite dans `.mcp.json` (ex : `n8n-mcp@2.93.0`) et bump volontairement après avoir lu le CHANGELOG.
 
 ### Pattern canonique du kit pour les credentials MCP
 
@@ -280,8 +281,9 @@ Exemple `.mcp.json` (gitignored) :
         "MCP_MODE": "stdio",
         "LOG_LEVEL": "error",
         "DISABLE_CONSOLE_OUTPUT": "true",
-        "N8N_API_URL": "https://n8n.tondomaine.com/api/v1",
-        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIs..."
+        "N8N_API_URL": "https://n8n.tondomaine.com",
+        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIs...",
+        "DISABLED_TOOLS": "n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable"
       }
     }
   }

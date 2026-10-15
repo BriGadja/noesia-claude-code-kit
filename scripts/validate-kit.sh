@@ -290,6 +290,16 @@ check "Aucune occurrence de l'ancien nom dans le contenu" "! git grep -qi 'ia''p
 check "Aucun fichier ne porte l'ancien nom" "! git ls-files | grep -qi 'ia''preneur'"
 
 # ─────────────────────────────────────────────────────────────────────────
+# Check 11 — Exemples N8N_API_URL : URL nue, jamais terminée par /api/v1
+# ─────────────────────────────────────────────────────────────────────────
+# n8n-mcp construit le chemin de l'API lui-même : un /api/v1 ajouté donne
+# des 404. Le kit l'a recommandé à tort jusqu'en v2.8.4. Le CHANGELOG garde
+# l'historique et n'est pas scanné.
+echo ""
+echo "═══ Check 11 — Exemples N8N_API_URL sans /api/v1 ═══"
+check "Aucune URL d'exemple terminée par /api/v1 (hors CHANGELOG)" "! git grep -qE 'https?://[^[:space:]]*/api/v1' -- . ':!docs/CHANGELOG.md'"
+
+# ─────────────────────────────────────────────────────────────────────────
 # Verdict global
 # ─────────────────────────────────────────────────────────────────────────
 echo ""

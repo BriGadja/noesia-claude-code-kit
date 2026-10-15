@@ -60,7 +60,7 @@ Annonce :
 
 Si **non** (visite demandée), résume en 3 lignes :
 
-> "Le kit a **10 skills cycle de vie** (`/start`, `/brainstorm`, `/architect`, `/design`, `/plan`, `/execute`, `/validate`, `/close`, `/livrer`, `/evoluer`) + `/challenge` optionnel + 7 skills n8n tiers + 1 sous-agent `research-delegate`. Tout est coordonné pour t'amener du démarrage à un projet livré en prod, en t'adaptant au niveau (LITE / STANDARD / FULL) et au `project_type` (site / webapp / automation).
+> "Le kit a **10 skills cycle de vie** (`/start`, `/brainstorm`, `/architect`, `/design`, `/plan`, `/execute`, `/validate`, `/close`, `/livrer`, `/evoluer`) + `/challenge` optionnel + 14 skills n8n tiers (installés si ton projet touche à n8n) + 1 sous-agent `research-delegate`. Tout est coordonné pour t'amener du démarrage à un projet livré en prod, en t'adaptant au niveau (LITE / STANDARD / FULL) et au `project_type` (site / webapp / automation).
 >
 > Pour le détail complet (parcours, table skills, conditionnels, MCP install) → `cat docs/KIT.md` quand tu veux. Pour debugger un bug → built-in `/debug` + test de régression avant fix.
 >

@@ -16,7 +16,24 @@ paths: []
 
 ### 1. Lis le README upstream et installe le MCP — **mode API-connected par défaut**
 
-> **Règle non-négociable** : on installe TOUJOURS en mode **API-connected** (20+ tools, capable de créer/modifier/tester des workflows réels). Le mode docs-only (7 tools, lecture seule) est un fallback d'urgence — pas le défaut. Sans API-connected, `/execute` ne peut PAS déployer un workflow n8n, ce qui casse le cas d'usage `project_type: automation`.
+> **Règle non-négociable** : on installe TOUJOURS en mode **API-connected** (21 management tools, capable de créer/modifier/tester des workflows réels). Le mode docs-only (7 tools, lecture seule) est un fallback d'urgence — pas le défaut. Sans API-connected, `/execute` ne peut PAS déployer un workflow n8n, ce qui casse le cas d'usage `project_type: automation`.
+>
+> 🔴 **Nuance ajoutée le 2026-09-14 — API-connected ne veut plus dire "tout ouvert".** L'upstream
+> documente désormais `DISABLED_TOOLS` (section « Read-Only Deployment » du README), qui n'existait
+> pas quand cette règle a été écrite. **Le défaut du kit devient API-connected MOINS trois outils** :
+>
+> ```
+> DISABLED_TOOLS=n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable
+> ```
+>
+> `n8n_delete_workflow` est définitif (aucune corbeille dans n8n) ; `n8n_manage_credentials` expose
+> la structure des accès client même en lecture ; `n8n_manage_datatable` peut vider une table sans
+> que rien ne le signale. Les 25 outils restants couvrent tout `/execute` : lire, chercher des
+> templates, créer, modifier, valider, tester, lire les exécutions, auditer.
+>
+> Ce n'est pas une consigne donnée au modèle : **les outils n'existent pas dans la session.** Pour
+> aller plus loin, `DISABLED_TOOL_OPERATIONS` coupe une opération précise en gardant le reste de
+> l'outil, et n8n permet une clé API en lecture seule (Settings → API).
 
 #### 1.a Récupère `N8N_API_URL` + `N8N_API_KEY`
 
@@ -24,11 +41,11 @@ Tu as besoin de **deux valeurs** avant d'éditer `.mcp.json` :
 
 | Variable | Valeur | Où la trouver |
 |----------|--------|---------------|
-| `N8N_API_URL` | URL de base de ton instance n8n + `/api/v1` | Self-host : `https://n8n.tondomaine.com/api/v1`. n8n Cloud : `https://{workspace}.app.n8n.cloud/api/v1`. **Inclus toujours `/api/v1`** — sans ça, tous les appels MCP renvoient 404. |
+| `N8N_API_URL` | URL de base de ton instance n8n, **nue** | Self-host : `https://n8n.tondomaine.com`. n8n Cloud : `https://{workspace}.app.n8n.cloud`. 🔴 **N'ajoute PAS `/api/v1`** — le serveur construit le chemin lui-même. Corrigé le 2026-09-14 : la version précédente de cette ligne affirmait l'inverse, c'était faux (vérifié en direct, `n8n_health_check` répond `ok` sur l'URL nue). |
 | `N8N_API_KEY` | JWT généré dans n8n | Connecte-toi à ton instance → menu utilisateur (en bas à gauche) → **Settings** → **n8n API** → **Create an API key** → copie le token (visible une seule fois). |
 
 Si tu n'as pas d'instance n8n :
-- **Self-host rapide** : `docker run -it --rm -p 5678:5678 n8nio/n8n` puis ouvre `http://localhost:5678` et crée ton compte. URL = `http://localhost:5678/api/v1`.
+- **Self-host rapide** : `docker run -it --rm -p 5678:5678 n8nio/n8n` puis ouvre `http://localhost:5678` et crée ton compte. URL = `http://localhost:5678`, **et** ajoute `"WEBHOOK_SECURITY_MODE": "moderate"` dans le bloc `env` du `.mcp.json` : sans lui, n8n-mcp refuse une adresse locale (garde anti-SSRF, mode `strict` par défaut, cf. `docs/SELF_HOSTING.md` upstream).
 - **n8n Cloud** : <https://n8n.io/cloud/> (14 jours gratuits).
 
 #### 1.b Installe le MCP — **valeurs en clair dans `.mcp.json` (gitignoré)**
@@ -45,8 +62,9 @@ Va lire le README de <https://github.com/czlonkowski/n8n-mcp> pour la commande d
       "args": ["-y", "n8n-mcp"],
       "env": {
         "MCP_MODE": "stdio",
-        "N8N_API_URL": "https://n8n.tondomaine.com/api/v1",
-        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIs..."
+        "N8N_API_URL": "https://n8n.tondomaine.com",
+        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIs...",
+        "DISABLED_TOOLS": "n8n_delete_workflow,n8n_manage_credentials,n8n_manage_datatable"
       }
     }
   }
@@ -77,11 +95,11 @@ mcp__n8n-mcp__n8n_health_check
 
 Le retour DOIT contenir `"apiConfigured": true` (ou équivalent — vérifie le shape courant via `mcp__n8n-mcp__tools_documentation`). Si tu vois `"apiConfigured": false` ou seulement 7 tools listés (`search_nodes`, `get_node`, `validate_node`, `validate_workflow`, `search_templates`, `get_template`, `tools_documentation`), tu es resté en docs-only : recommence depuis 1.a.
 
-**Sanity check** : `mcp__n8n-mcp__n8n_list_workflows` doit retourner la liste réelle (même vide `[]`) sans erreur d'authentification. Une 401/403 = clé invalide. Une 404 = `N8N_API_URL` mal formée (oublié `/api/v1` ?).
+**Sanity check** : `mcp__n8n-mcp__n8n_list_workflows` doit retourner la liste réelle (même vide `[]`) sans erreur d'authentification. Une 401/403 = clé invalide. Une 404 = `N8N_API_URL` mal formée — **le cas le plus fréquent est d'avoir AJOUTÉ `/api/v1`**, qu'il ne faut pas mettre.
 
 ### 2. Installe la collection de skills opérationnels czlonkowski
 
-Repo source officiel (confirmé upstream) : <https://github.com/czlonkowski/n8n-skills>. Sept skills complémentaires : `n8n-expression-syntax`, `n8n-mcp-tools-expert`, `n8n-workflow-patterns`, `n8n-validation-expert`, `n8n-node-configuration`, `n8n-code-javascript`, `n8n-code-python`.
+Repo source officiel (confirmé upstream) : <https://github.com/czlonkowski/n8n-skills>. **14 skills** au 2026-10-15 (c'étaient 7 en mai) : les 7 d'origine `n8n-expression-syntax`, `n8n-mcp-tools-expert`, `n8n-workflow-patterns`, `n8n-validation-expert`, `n8n-node-configuration`, `n8n-code-javascript`, `n8n-code-python`, plus `n8n-code-tool`, `n8n-error-handling`, `n8n-binary-and-data`, `n8n-subworkflows`, `n8n-agents`, `n8n-multi-instance`, `n8n-self-hosting`. Le pack embarque aussi un **skill routeur** (`using-n8n-mcp-skills`) chargé à chaque session (hook `SessionStart`) et des **hooks PreToolUse/PostToolUse** qui rappellent le bon skill avant les appels sensibles. Les hooks ne tournent que dans l'install plugin, et échouent toujours ouvert.
 
 **Trois méthodes — Méthode 1 recommandée (= upstream README)** :
 
@@ -91,7 +109,7 @@ Repo source officiel (confirmé upstream) : <https://github.com/czlonkowski/n8n-
 /plugin install czlonkowski/n8n-skills
 ```
 
-Les 7 skills deviennent disponibles immédiatement, mises à jour gérées par Claude Code.
+Les 14 skills et le routeur deviennent disponibles immédiatement, mis à jour par Claude Code.
 
 #### Méthode 2 — Marketplace
 
@@ -343,7 +361,7 @@ LangChain nodes use `@n8n/n8n-nodes-langchain.` prefix. Core nodes use `n8n-node
 
 ## Modes du MCP
 
-- **API-connected** (défaut du kit, avec `N8N_API_URL` + `N8N_API_KEY`) : 20+ tools, management complet (`n8n_create_workflow`, `n8n_update_partial_workflow`, `n8n_executions`, `n8n_test_workflow`, etc.). **Obligatoire** pour `/execute` sur `project_type: automation` — sans ce mode, le skill ne peut pas déployer.
+- **API-connected** (défaut du kit, avec `N8N_API_URL` + `N8N_API_KEY`) : 28 tools (7 de doc + 21 de gestion), 25 avec les trois coupés par défaut, management complet (`n8n_create_workflow`, `n8n_update_partial_workflow`, `n8n_executions`, `n8n_test_workflow`, etc.). **Obligatoire** pour `/execute` sur `project_type: automation` — sans ce mode, le skill ne peut pas déployer.
 - **docs-only** (fallback, sans credentials) : 7 tools en lecture seule (`search_nodes`, `get_node`, `validate_node`, `validate_workflow`, `search_templates`, `get_template`, `tools_documentation`). Utile uniquement pour apprendre n8n offline ou builder un JSON à coller à la main. **Ne pas rester ici** sur un vrai projet.
 
 Le mode est détecté automatiquement au démarrage du MCP. Si tu te retrouves accidentellement en docs-only, retourne à l'Étape 1.a, ajoute les env vars dans `.env` + `.mcp.json`, puis redémarre Claude Code.

@@ -7,7 +7,7 @@ paths:
 
 # Règles n8n (auto-chargées sur `.workflow.json`, `.mcp.json`, ou skill n8n)
 
-> Adapte ou supprime selon ton projet. Ce fichier complète les 7 skills `n8n-*` du kit (création/validation/debug) — ici on documente les **directives système prescrites par czlonkowski** (auteur du MCP) **+** les conventions transverses du projet.
+> Adapte ou supprime selon ton projet. Ce fichier complète les 14 skills `n8n-*` de czlonkowski (création/validation/debug) — ici on documente les **directives système prescrites par czlonkowski** (auteur du MCP) **+** les conventions transverses du projet.
 
 ## Directives système — n8n MCP (prescrites par czlonkowski)
 
