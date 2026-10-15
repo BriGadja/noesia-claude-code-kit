@@ -1,4 +1,4 @@
-# IAPreneurs Claude Code Kit
+# Noésia Claude Code Kit
 
 > **Framework guidé Claude Code pour débutants**, du démarrage au scaling. Supporte 3 cas d'usage : **site vitrine**, **web app SaaS**, **automatisation n8n**. Tape `/start` après le clone, suis le guide piloté, et tu attaques ton premier projet en 5 minutes.
 
@@ -79,7 +79,7 @@ Lis [`docs/KIT.md`](docs/KIT.md). Méta-doc complète : tous les skills, parcour
 
 **Recommandé — bouton "Use this template"** (historique git propre dès le départ) :
 
-1. Va sur https://github.com/BriGadja/iapreneurs-claude-code-kit
+1. Va sur https://github.com/BriGadja/noesia-claude-code-kit
 2. Clique le bouton vert **"Use this template"** → **"Create a new repository"**
 3. Choisis le nom de ton projet → "Create repository"
 4. Clone ton nouveau repo :
@@ -92,7 +92,7 @@ Lis [`docs/KIT.md`](docs/KIT.md). Méta-doc complète : tous les skills, parcour
 **Alternative — clone direct du kit** (si tu veux contribuer ou si l'option template n'est pas dispo) :
 
 ```bash
-git clone https://github.com/BriGadja/iapreneurs-claude-code-kit.git mon-projet
+git clone https://github.com/BriGadja/noesia-claude-code-kit.git mon-projet
 cd mon-projet
 claude
 ```

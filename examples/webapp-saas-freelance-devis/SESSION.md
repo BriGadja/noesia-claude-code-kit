@@ -19,7 +19,7 @@ J'ai cloné le kit via le bouton "Use this template" sur GitHub, nommé mon repo
 ```
 
 > Claude :
-> *Bienvenue. Je détecte un fresh template du kit IAPreneurs. Le `CLAUDE.md.template` est présent mais pas de `CLAUDE.md` projet — je copie le template vers `CLAUDE.md` (gitignored par défaut, chaque fork génère le sien).*
+> *Bienvenue. Je détecte un fresh template du kit Noésia. Le `CLAUDE.md.template` est présent mais pas de `CLAUDE.md` projet — je copie le template vers `CLAUDE.md` (gitignored par défaut, chaque fork génère le sien).*
 >
 > *Tu veux skipper la visite du kit ? (oui/non)*
 

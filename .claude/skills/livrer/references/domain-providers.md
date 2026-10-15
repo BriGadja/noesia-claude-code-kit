@@ -8,7 +8,7 @@
 
 Selon `{registrar}` choisi en Étape 3.5.2 et type d'URL (`sous-domaine` si `URL_CIBLE` contient au moins 2 points pour `.fr`/`.com`, sinon apex), applique la procédure correspondante ci-dessous.
 
-## OVH + sous-domaine (cas le plus fréquent — Discoverly, IAPreneurs)
+## OVH + sous-domaine (cas le plus fréquent — Discoverly)
 
 > 1. Va sur **www.ovh.com/manager → Web Cloud → Domaines → `{domaine-parent}` → Zone DNS**
 > 2. Clique **"Ajouter une entrée"** → choisis type **CNAME**

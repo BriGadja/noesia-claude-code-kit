@@ -34,7 +34,7 @@ Le template contient les placeholders `{Nom de ton projet}`, `{site | webapp | a
 
 ### Étape 0 — Détecter un clone direct du kit (5s)
 
-**Détection** : lance `git remote get-url origin 2>/dev/null` et grep `iapreneurs-claude-code-kit`. Si match ET que `<!-- start:identité -->` contient encore le placeholder par défaut (= projet jamais cadré), tu es dans le cas "fresh clone du kit".
+**Détection** : lance `git remote get-url origin 2>/dev/null` et grep `claude-code-kit` (couvre le nom actuel `noesia-claude-code-kit` et l'ancien nom du dépôt). Si match ET que `<!-- start:identité -->` contient encore le placeholder par défaut (= projet jamais cadré), tu es dans le cas "fresh clone du kit".
 
 **Si détecté** → **lis `references/bootstrap-fresh-clone.md` et applique sa procédure** (question utilisateur + reinit git si oui).
 

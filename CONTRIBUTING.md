@@ -1,4 +1,4 @@
-# Contribuer au kit IAPreneurs Claude Code
+# Contribuer au kit Noésia Claude Code
 
 > Tu utilises le kit et tu vois un truc à améliorer ? Merci d'avance. Le kit a un bus factor = 1 aujourd'hui (auteur solo : Brice Gachadoat) — toute contribution externe le rend plus solide.
 
@@ -34,7 +34,7 @@ Format de commit conventionnel : `feat`, `fix`, `chore`, `docs`, `refactor`, `te
 - **Exemples supplémentaires** dans `examples/` (autres stacks, autres `project_type`, autres workflows n8n)
 - **Tests narratifs** : sessions réelles documentées au format `examples/{x}/SESSION.md` (cf. tuto A-Z dans `webapp-saas-freelance-devis/`)
 - **Skills n8n** (à `.claude/skills/n8n/`) si tu trouves un pattern d'expression / config / workflow qui revient
-- **Traduction QUICKSTART/README en anglais** (le kit est FR par design pour la communauté IAPreneurs, mais une version EN ouvre l'adoption)
+- **Traduction QUICKSTART/README en anglais** (le kit est FR par design pour les élèves de l'école Noésia, mais une version EN ouvre l'adoption)
 
 ## Ce que le kit ne deviendra pas
 
@@ -46,7 +46,7 @@ Pour cadrer les attentes :
 
 ## Contact
 
-- Issues : https://github.com/BriGadja/iapreneurs-claude-code-kit/issues
+- Issues : https://github.com/BriGadja/noesia-claude-code-kit/issues
 - Auteur : Brice Gachadoat (`brice@sablia.io`)
 
 ## License

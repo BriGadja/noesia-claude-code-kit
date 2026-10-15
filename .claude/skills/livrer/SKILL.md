@@ -34,13 +34,13 @@ Pas d'auto-déploiement silencieux : chaque commande affichée, validée explici
 
 **1.3 — Confirmation stack (recommandation, JAMAIS imposition)** — **étape ajoutée v2.5.2, non-négociable pour respecter le principe stack-agnostic du skill** :
 
-Avant toute action deploy, le skill DOIT confirmer explicitement la stack avec l'utilisateur — Vercel/Supabase/OVH ne sont **recommandés** (défauts module Claude Code IAPreneurs), pas **imposés**. Cette confirmation tourne **en première position dans le skill** (avant Étape 2 pré-checks).
+Avant toute action deploy, le skill DOIT confirmer explicitement la stack avec l'utilisateur — Vercel/Supabase/OVH ne sont **recommandés** (défauts du module Claude Code de l'école Noésia), pas **imposés**. Cette confirmation tourne **en première position dans le skill** (avant Étape 2 pré-checks).
 
 **Cas A — `## Stack` vide ou ambiguë** (typique 1ère livraison, projet sans /architect Étape 2b complète) :
 
 AskUserQuestion :
 
-> "Avant de livrer, je confirme la stack qu'on va utiliser. La **stack recommandée par défaut** dans le module Claude Code IAPreneurs (interface FR, support FR, retours communauté positifs) est :
+> "Avant de livrer, je confirme la stack qu'on va utiliser. La **stack recommandée par défaut** dans le module Claude Code de l'école Noésia (interface FR, support FR, retours communauté positifs) est :
 > - **GitHub** pour stocker le code (gratuit, standard de fait)
 > - **Vercel** pour héberger le projet (hosting + CI/CD intégré, Hobby gratuit non-commercial / Pro ~$20/mo pour usage commercial)
 > - **OVH** pour le registrar de domaine (~7€/an .fr, interface + support FR)
@@ -146,7 +146,7 @@ Options :
 AskUserQuestion (input texte) : *"Quelle est l'URL exacte que tu veux ?"* → stocke dans `URL_CIBLE` (ex: `discoverly.sablia.fr` ou `monsite.fr`).
 
 AskUserQuestion (choix) : *"Quel registrar gère le domaine `{domaine-parent}` ?"* — options :
-1. **OVH** *(recommandé dans le module Claude Code IAPreneurs)*
+1. **OVH** *(recommandé dans le module Claude Code de l'école Noésia)*
 2. **Gandi**
 3. **Cloudflare**
 4. **Hostinger**

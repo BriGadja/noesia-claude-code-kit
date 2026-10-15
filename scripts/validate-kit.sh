@@ -280,6 +280,16 @@ else
 fi
 
 # ─────────────────────────────────────────────────────────────────────────
+# Check 10 — Ancien nom de l'école absent (contenu ET noms de fichiers)
+# ─────────────────────────────────────────────────────────────────────────
+# L'école a été renommée Noésia le 2026-10-09. Le motif est coupé en deux
+# ('ia''preneur') pour que ce script ne se détecte pas lui-même.
+echo ""
+echo "═══ Check 10 — Ancien nom de l'école absent ═══"
+check "Aucune occurrence de l'ancien nom dans le contenu" "! git grep -qi 'ia''preneur' -- ."
+check "Aucun fichier ne porte l'ancien nom" "! git ls-files | grep -qi 'ia''preneur'"
+
+# ─────────────────────────────────────────────────────────────────────────
 # Verdict global
 # ─────────────────────────────────────────────────────────────────────────
 echo ""

@@ -1,8 +1,8 @@
 ---
-topic: Slimmer CLAUDE.md du kit IAPreneurs (405 → ~150 lignes) — redistribution méta-doc vers docs/skills/rules
+topic: Slimmer CLAUDE.md du kit Noésia (405 → ~150 lignes) — redistribution méta-doc vers docs/skills/rules
 created: 2026-05-12
 agents: [codebase-scout (dependency mapping)]
-plan: plans/iapreneurs-kit-claude-md-slim.md
+plan: plan interne kit-claude-md-slim (hors dépôt)
 ---
 
 ## Research Findings

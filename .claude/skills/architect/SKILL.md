@@ -50,7 +50,7 @@ Ces questions déterminent les choix techniques **avant** de figer la stack :
 
 > *"Tu as des providers de référence que tu utilises déjà ? Hosting (Vercel/Netlify/Cloudflare/GitHub Pages/autre), BDD (Supabase/Neon/PlanetScale/autre/aucune), Email (Resend/Postmark/autre/aucun). Dis-moi ce que tu sais, je remplis les trous avec mes défauts."*
 
-**Défauts si "pas d'avis"** — alignés sur la communauté IAPreneurs : Hosting → **Vercel**, BDD → **Supabase** (RLS native), Email → **Resend**, Automation runtime → **n8n self-hosted** ou **n8n cloud**.
+**Défauts si "pas d'avis"** — alignés sur l'école Noésia : Hosting → **Vercel**, BDD → **Supabase** (RLS native), Email → **Resend**, Automation runtime → **n8n self-hosted** ou **n8n cloud**.
 
 **2c — Proposer la stack complète**, alignée avec la nature du projet **ET** les providers retenus :
 
@@ -58,7 +58,7 @@ Ces questions déterminent les choix techniques **avant** de figer la stack :
 - **App web avec génération IA visible** : ci-dessus + Anthropic SDK dans une API route Next.js
 - **App web avec génération IA async (PDF, email)** : ci-dessus + workflow n8n via webhook + callback `{BDD}` Realtime
 - **Automatisation pure (pas d'UI front)** : n8n + `{BDD}` (stockage / état) + intégrations externes
-- **Voix** : Vapi (provider voice IAPreneurs community-friendly)
+- **Voix** : Vapi (provider voice recommandé par l'école Noésia)
 - **Scripts ponctuels** : Python ou TypeScript Node
 
 Toujours **demander confirmation** : "Je propose **{stack complète avec providers retenus}**. Ça te va ou tu veux changer un truc ?"
