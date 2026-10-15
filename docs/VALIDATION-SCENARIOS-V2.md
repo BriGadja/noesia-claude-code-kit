@@ -14,7 +14,7 @@ Sortie : verdict par section + verdict global N/N PASS.
 
 ## Scénario A — Webapp SaaS (cycle complet de A à Z)
 
-**Profil débutant** : un IAPreneur découvre Claude Code, veut construire une web app SaaS (auth + BDD + utilisateurs) sans connaissance préalable. Stack Next.js + Supabase + Vercel.
+**Profil débutant** : un élève de l'école Noésia découvre Claude Code, veut construire une web app SaaS (auth + BDD + utilisateurs) sans connaissance préalable. Stack Next.js + Supabase + Vercel.
 
 **Friction Round 1** : "j'ai un PRD mais mon repo est vide, je tape quoi ?" → `/scaffold` envisagé puis dropped en D25 (fold dans `/architect` Étape 6 Provisioning).
 
@@ -50,7 +50,7 @@ Sortie : verdict par section + verdict global N/N PASS.
 
 ## Scénario C — Automation n8n
 
-**Profil débutant** : un IAPreneur veut automatiser sa veille IA via un workflow n8n (RSS → Claude → Slack). Pas d'UI front, pas d'utilisateurs interactifs.
+**Profil débutant** : un élève de l'école Noésia veut automatiser sa veille IA via un workflow n8n (RSS → Claude → Slack). Pas d'UI front, pas d'utilisateurs interactifs.
 
 **Friction Round 1** : "le kit me pose des questions UI alors que mon projet n'a pas d'UI" → résolu par `/plan` adaptatif project_type (questions automation : trigger, credentials externes, idempotence ; web-app-centric retirées).
 
@@ -64,7 +64,7 @@ Sortie : verdict par section + verdict global N/N PASS.
 
 ## Scénario D — Reprise (prime)
 
-**Profil débutant** : un IAPreneur ouvre une session de travail sur son projet existant (matin, après pause, ou retour J+15). Il veut recharger le contexte avant de continuer.
+**Profil débutant** : un élève de l'école Noésia ouvre une session de travail sur son projet existant (matin, après pause, ou retour J+15). Il veut recharger le contexte avant de continuer.
 
 **Friction Round 1** : "je dois relire le PRD à la main pour me souvenir" → résolu par `/prime` (renommé depuis l'ancien skill *recap* en v2.1.0) qui lit PRD + STRUCTURE.md + plans (`docs/plans/` priorité, fallback `plans/` puis racine) + git log + MEMORY.md et propose 1-3 actions concrètes. `/start` détecte automatiquement les projets existants et bifurque vers `/prime`.
 

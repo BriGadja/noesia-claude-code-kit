@@ -64,7 +64,7 @@ Pas-à-pas guidé, AskUserQuestion à chaque checkpoint. **Création de comptes 
 
 4. **Création du repo GitHub = Dashboard web** *(non-négociable : visuel/pédagogique, PAS de `gh repo create`)* :
    > AskUserQuestion : *"Repo public ou privé ?"* — options :
-   > - "Public (recommandé — philosophie communauté IAPreneurs)"
+   > - "Public (recommandé — philosophie de l'école Noésia)"
    > - "Privé"
    >
    > Va sur **https://github.com/new** :

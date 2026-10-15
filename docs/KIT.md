@@ -1,4 +1,4 @@
-# Kit IAPreneurs Claude Code — doc de référence
+# Kit Noésia Claude Code — doc de référence
 
 > **Version actuelle : v2.8.0** (2026-05-21). Source de vérité : fichier [`VERSION`](../VERSION) à la racine. Changelog : [`docs/CHANGELOG.md`](CHANGELOG.md).
 
@@ -29,7 +29,7 @@
 
 ### Hors table — built-in & utilitaires
 
-- **`/prime`** — rituel d'entrée de session sur un projet existant (matin, après pause, reprise J+15). Lit `PRD.md` + `STRUCTURE.md` + plans (`docs/plans/` priorité, fallback `plans/` puis racine) + git log + `MEMORY.md` et propose 1-3 actions concrètes. `/start` détecte automatiquement les projets existants et bifurque vers `/prime`. *(Note : ce `/prime` est custom au kit IAPreneurs — ne pas confondre avec d'autres outils tiers homonymes.)*
+- **`/prime`** — rituel d'entrée de session sur un projet existant (matin, après pause, reprise J+15). Lit `PRD.md` + `STRUCTURE.md` + plans (`docs/plans/` priorité, fallback `plans/` puis racine) + git log + `MEMORY.md` et propose 1-3 actions concrètes. `/start` détecte automatiquement les projets existants et bifurque vers `/prime`. *(Note : ce `/prime` est custom au kit Noésia — ne pas confondre avec d'autres outils tiers homonymes.)*
 - **`/debug`** (built-in Claude Code natif) — pour debugger un bug. **Règle de comportement** : écris d'abord un test de régression qui reproduit le bug, puis fais-le passer (TDD).
 - **`/start` Phase 4** — propose le niveau Request Classification (LITE / STANDARD / FULL). Stocké dans `CLAUDE.md ## Request Classification`.
 
@@ -157,7 +157,7 @@ Depuis v2.3.0, `/livrer` pour `hosting = vercel` adopte le pattern moderne **Git
 Entre Étape 3 (deploy) et Étape 4 (smoke test), `/livrer` propose **Étape 3.5 — Domaine custom**. Une seule question d'entrée : *"Tu veux configurer une URL custom au lieu de garder `{URL_DEFAUT}` ?"*. Si "Non" → skip direct, aucun ralentissement. Si "Oui" → flow guidé pas-à-pas.
 
 **Registrars couverts** (avec instructions précises) :
-- **OVH** *(recommandé dans le module Claude Code IAPreneurs — interface FR, support FR, ~7€/an .fr)*
+- **OVH** *(recommandé dans le module Claude Code de l'école Noésia — interface FR, support FR, ~7€/an .fr)*
 - **Gandi**, **Cloudflare**, **Hostinger**
 - **Autre** : pattern générique CNAME/A + lien doc Vercel
 
@@ -182,7 +182,7 @@ Si tu n'es pas sur Vercel, ou si tu n'as pas de commit non-pushé, cette étape 
 
 ## Conditionnels — quand skip un skill
 
-- **`/architect` Étape 2b** demande les **providers favoris** (hosting / BDD / email) avant de figer la stack. Défauts si l'utilisateur n'a pas d'avis : Vercel + Supabase + Resend (couverts par la communauté IAPreneurs).
+- **`/architect` Étape 2b** demande les **providers favoris** (hosting / BDD / email) avant de figer la stack. Défauts si l'utilisateur n'a pas d'avis : Vercel + Supabase + Resend (recommandés par l'école Noésia).
 - **`/architect` Étape 6** (Provisioning & Scaffold) branche sur `project_type` ET la stack retenue : `site` = framework minimal + optionnel email, `webapp` = framework + BDD init + .env, `automation` = dossier `workflows/` + test n8n MCP.
 - **`/design` skip** si `project_type` ∈ {automation, site simple} ou si le projet n'a pas d'UI custom.
 - **`/brainstorm` skip** si l'idée est déjà claire après `/start`.

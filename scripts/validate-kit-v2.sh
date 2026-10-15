@@ -46,7 +46,7 @@ CLAUDE_MD="CLAUDE.md.template"
 
 echo ""
 echo "═══════════════════════════════════════════════════════════"
-echo "  Validation kit IAPreneurs Claude Code $VERSION"
+echo "  Validation kit Noésia Claude Code $VERSION"
 echo "═══════════════════════════════════════════════════════════"
 
 echo ""

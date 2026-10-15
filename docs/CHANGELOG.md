@@ -1,7 +1,24 @@
 # Changelog
 
-> Toutes les versions notables du kit IAPreneurs Claude Code.
+> Toutes les versions notables du kit Noésia Claude Code.
 > Format inspiré de [Keep a Changelog](https://keepachangelog.com/). Versions [SemVer](https://semver.org/lang/fr/).
+
+## v2.8.4 — 2026-10-15
+
+### Modifié
+
+- **Le kit prend le nom de l'école : Noésia.** L'école a changé de nom le 2026-10-09 ; toutes les mentions de l'ancien nom (titres, skills, docs, exemples, script de validation) passent à « Noésia », et le dépôt devient `BriGadja/noesia-claude-code-kit`. GitHub redirige l'ancienne adresse : un clone existant continue de fonctionner (`git remote set-url origin https://github.com/BriGadja/noesia-claude-code-kit.git` pour le mettre à jour).
+- **`/start` Étape 0** détecte un clone direct du kit sur `claude-code-kit` dans le remote : le nom actuel du dépôt et l'ancien sont tous deux reconnus.
+
+### Ajouté
+
+- **`validate-kit.sh` Check 10 — ancien nom absent** : bloque toute réintroduction de l'ancien nom, dans le contenu comme dans les noms de fichiers.
+
+### Non-breaking
+
+Aucune signature de skill modifiée. Renommage de texte et d'un fichier de recherche, plus un check de lint.
+
+---
 
 ## v2.8.3 — 2026-05-21
 
@@ -153,7 +170,7 @@ Scénario typique débloqué : projet `site` ou `webapp` démarré sans n8n (`/s
 ### Ajouté
 
 - `/livrer` **Étape 1.3 — Confirmation stack (recommandation, JAMAIS imposition)** ajoutée en tête de skill (avant Étape 2 pré-checks) :
-  - Énonce explicitement la stack recommandée par défaut module Claude Code IAPreneurs : **GitHub** (code) + **Vercel** (hosting) + **OVH** (registrar) — avec justifications (FR, retours communauté)
+  - Énonce explicitement la stack recommandée par défaut du module Claude Code de l'école Noésia : **GitHub** (code) + **Vercel** (hosting) + **OVH** (registrar) — avec justifications (FR, retours communauté)
   - 4 options en Cas A (stack vide/ambiguë) : tout accepter / changer hosting / changer registrar / tout changer
   - Cas B (stack déjà renseignée) : confirmation rapide 1 question avec défaut "garder"
   - Routing déterministe : la stack confirmée détermine quelle branche d'Étape 3 (Vercel/Netlify/Cloudflare) et d'Étape 3.5 (OVH/Gandi/Cloudflare/Hostinger) sera déroulée ensuite
@@ -217,7 +234,7 @@ Retour utilisateur : "Vercel semblait imposé par le skill, je voudrais que ce s
 
 - `/livrer` **Étape 3.5 — Domaine custom (advisory, opt-out)** entre Étape 3 (deploy) et Étape 4 (smoke test) :
   - Question d'entrée 3 options : sous-domaine d'un domaine existant / domaine racine fraîchement acheté / garder URL hosting par défaut (skip direct)
-  - Registrar-aware : **OVH** (recommandé module Claude Code IAPreneurs), **Gandi**, **Cloudflare**, **Hostinger**, **Autre** (pattern générique)
+  - Registrar-aware : **OVH** (recommandé par le module Claude Code de l'école Noésia), **Gandi**, **Cloudflare**, **Hostinger**, **Autre** (pattern générique)
   - Distinction sous-domaine (CNAME, simple) vs apex (A records, plus complexe — OVH ne supporte pas ALIAS/ANAME)
   - Gotcha OVH "point final obligatoire sur la cible CNAME" explicité
   - Gotcha Cloudflare "Proxy DNS only (nuage gris, pas orange)" explicité (sinon SSL Vercel pète)
@@ -285,7 +302,7 @@ Retour utilisateur : "Vercel semblait imposé par le skill, je voudrais que ce s
 
 **3. Vidéos pédagogie**
 
-- Sommaire IAPreneurs v5 et plan Hub Documents séquencés pour défer n8n à 5.2 et intégrer `/design` dans 5.1 (modification externe, hors repo kit).
+- Sommaire du module v5 et plan Hub Documents séquencés pour défer n8n à 5.2 et intégrer `/design` dans 5.1 (modification externe, hors repo kit).
 
 ### Modifié (layout)
 
@@ -356,7 +373,7 @@ Aucune action utilisateur requise pour projets pré-v2.1.0 :
 
 ### Ajouté
 
-- **3 nouveaux skills (noms FR pour cohérence communauté IAPreneurs)** :
+- **3 nouveaux skills (noms FR pour cohérence avec l'école Noésia)** :
   - `/prime` — reprendre un projet existant après absence (lit PRD/plans/git log)
   - `/livrer` — déployer en production en lisant `## Stack` du CLAUDE.md (jamais hardcode de provider — Vercel/Netlify/Cloudflare/GitHub Pages/autre détectés depuis stack) + checklist policy d'accès BDD advisory + smoke test
   - `/evoluer` — ajouter une feature à un projet livré sans écraser le PRD
@@ -385,12 +402,12 @@ Aucune action utilisateur requise pour projets pré-v2.1.0 :
 
 ### Retiré
 
-- Mentions de **Dipler** dans le kit public (règle IAPreneurs : voice agents = **Vapi** dans la communauté, jamais Dipler).
+- Mentions de **Dipler** dans le kit public (règle de l'école Noésia : voice agents = **Vapi**, jamais Dipler).
 
 ### Méthode
 
-- Plan : `plans/iapreneurs-kit-framework-guide-refonte.md` (8 phases A-H, 24 décisions arch, 4 rounds challenge, trajectoire BLOCKING 6→5→2→0)
-- Recherche : `research/plan/2026-05-12-iapreneurs-kit-framework-guide-refonte.md` (3 agents : audit interne / scout externe / critique pédagogique)
+- Plan : plan interne `kit-framework-guide-refonte`, hors dépôt (8 phases A-H, 24 décisions arch, 4 rounds challenge, trajectoire BLOCKING 6→5→2→0)
+- Recherche : notes internes hors dépôt (3 agents : audit interne / scout externe / critique pédagogique)
 
 ---
 
@@ -455,10 +472,10 @@ Aucune action utilisateur requise pour projets pré-v2.1.0 :
 - LICENSE MIT
 - README initial avec quickstart
 
-[v2.0.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/compare/v1.5.0...HEAD
-[v1.5.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.5.0
-[v1.4.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.4.0
-[v1.3.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.3.0
-[v1.2.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.2.0
-[v1.1.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.1.0
-[v1.0.0]: https://github.com/BriGadja/iapreneurs-claude-code-kit/releases/tag/v1.0.0
+[v2.0.0]: https://github.com/BriGadja/noesia-claude-code-kit/compare/v1.5.0...HEAD
+[v1.5.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.5.0
+[v1.4.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.4.0
+[v1.3.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.3.0
+[v1.2.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.2.0
+[v1.1.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.1.0
+[v1.0.0]: https://github.com/BriGadja/noesia-claude-code-kit/releases/tag/v1.0.0

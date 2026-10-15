@@ -1,15 +1,15 @@
 # Bootstrap fresh clone (Étape 0)
 
-> **Lis ce fichier uniquement si** `/start` Étape 0 détecte un clone direct du kit (remote `origin` pointe vers `iapreneurs-claude-code-kit` ET `<!-- start:identité -->` contient encore le placeholder par défaut).
+> **Lis ce fichier uniquement si** `/start` Étape 0 détecte un clone direct du kit (remote `origin` contient `claude-code-kit` ET `<!-- start:identité -->` contient encore le placeholder par défaut).
 >
 > But : repartir d'un historique git propre tout en gardant le kit accessible via `upstream` pour récupérer les updates futures.
 
 ## Question utilisateur
 
-> *"Je vois que tu as cloné directement le repo du kit (origin = `iapreneurs-claude-code-kit`). Pour que ton projet parte sur un historique git propre, je peux :*
+> *"Je vois que tu as cloné directement le repo du kit (origin = `noesia-claude-code-kit`). Pour que ton projet parte sur un historique git propre, je peux :*
 > *1. Supprimer l'historique du kit (`rm -rf .git && git init`)*
 > *2. Garder le kit comme remote `upstream` (pour tirer les updates futures via `git pull upstream main`)*
-> *3. Faire un premier commit `chore: init from iapreneurs-claude-code-kit v{version}`*
+> *3. Faire un premier commit `chore: init from noesia-claude-code-kit v{version}`*
 >
 > *Tu veux que je fasse ça maintenant ? (oui / non)*
 >
@@ -31,7 +31,7 @@ git remote add upstream "$KIT_URL"
 
 # Premier commit propre
 git add -A
-git commit -m "chore: init from iapreneurs-claude-code-kit $KIT_VERSION"
+git commit -m "chore: init from noesia-claude-code-kit $KIT_VERSION"
 ```
 
 Annonce ensuite : *"✅ Historique git réinitialisé. Le kit est gardé comme `upstream` — `git pull upstream main` pour récupérer les futures versions. Premier commit fait. On continue le cadrage."*
